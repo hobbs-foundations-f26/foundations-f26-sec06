@@ -1,6 +1,20 @@
+# This is a comment in python.
+# The hash symbol (#) at the front tells the python
+# interpreter to ignore it.
+
+'''
+Triple quotes can make a multi-line 
+comment.
+
+Sometime's that's what people want.
+'''
+
+
+
+
+
 # python_strings_comprehensive.py
 # A complete lecture script covering Python string operations and built-in methods.
-# Uncomment the designated lines during the lecture to demonstrate errors.
 
 # ==========================================
 # 0. BASIC & MULTILINE STRINGS
@@ -23,6 +37,7 @@
 
 # ==========================================
 # 1. F-STRINGS & FORMATTING
+# F-Strings are useful when you want a variable's value to be part of the string.
 # ==========================================
 # print("\n--- 1. F-Strings & Formatting ---")
 # instructor = "Nathaniel"
@@ -54,7 +69,7 @@
 # integers can be added
 # print(55 + 10)
 
-# strings can be concatenated
+# # strings can be concatenated
 # print('55' + '10')
 
 # but you can not mix types with the + operator
@@ -66,11 +81,12 @@
 # 2. ESCAPE CHARACTERS
 # ==========================================
 # print("\n--- 2. Escape Characters ---")
-# # \n for newline, \t for tab, \' or \" to bypass quote termination
-# escaped_str = "First line.\n\tIndented second line.\nShe said, \"Python is fun!\""
+# print("These start with a backslash \\")
+# # \n for newline, \t for tab, \' or \" to bypass quote termination, \\ for backslash itself
+# escaped_str = "First line.\n\tIndented second line.\nhere's a backslash \\ .\nShe said, \"Python is fun!\""
 # print(escaped_str)
 
-# # Raw strings (prefix 'r') ignore escape characters - excellent for regex or file paths
+# # # Raw strings (prefix 'r') ignore escape characters - excellent for regex or file paths
 # raw_str = r"C:\new_folder\test.txt"
 # print(f"Raw string: {raw_str}")
 
@@ -87,11 +103,11 @@
 # print(f"First letter: {word[0]}")
 # print(f"Last letter (negative indexing): {word[-1]}")
 
-# # some examples without the f string
-# # THE len() FUNCTION
+# # # some examples without the f string
+# # # THE len() FUNCTION
 # print('the length of a string can be found with the len function, e.g. ' + str(len(word)))
 
-# # why the negative indexing is useful (it's annoying to work with the end otherwise)
+# # # why the negative indexing is useful (it's annoying to work with the end otherwise)
 # print("Last Letter (positive indexing): " + word[len(word)-1])
 
 # FAILS: Accessing an index that doesn't exist
@@ -114,21 +130,24 @@
 # print(f"First three letters: {alphabet[0:3]}")  # include 0, and everything up to, but NOT including index 3
 # print(f"Starting from index 3 and all the way to the end: {alphabet[3:]}") # len(alphabet) is the default, you can omit it
 # print(f"Every second letter (step): {alphabet[::2]}")
+# # NOTE: below is the same as above (which is the usual way to write it), but making things explicit
+# print(f"Every second letter (step): {alphabet[0:len(alphabet):2]}")
 # print(f"Reversed string: {alphabet[::-1]}")     # Classic interview trick
 
 
 # # ==========================================
 # # 5. OPERATORS & MEMBERSHIP
 # # ==========================================
-print("\n--- 5. Operators & Membership ---")
-str1 = "Business"
-str2 = "Analytics"
+# print("\n--- 5. Operators & Membership ---")
+# str1 = "Business"
+# str2 = "Analytics"
 
-# Concatenation (+) and Repetition (*)
-print(f"Concatenated: {str1 + ' ' + str2}")
-print(f"Repetition: {'Echo! ' * 3}")
+# # Concatenation (+) and Repetition (*)
+# print(f"Concatenated: {str1 + ' ' + str2}")
+# print(f"Repetition: {'Echo! ' * 3}") # concatenate the string to itself 3 times
 
 # # Membership operator (in / not in) - returns a boolean
+# NOTE: you can ignore this for a few weeks but I'll leave here for later review
 # print(f"Is 'Bus' in str1?: {'Bus' in str1}")
 # print(f"Is 'Math' not in str2?: {'Math' not in str2}")
 
@@ -154,9 +173,9 @@ print(f"Repetition: {'Echo! ' * 3}")
 # print(f"Title: {clean_string.title()}")
 # print(f"Capitalize: {clean_string.capitalize()}") # Only first letter of string
 
-# # NOTE: Methods don't change the original variable unless reassigned
-# # clean_string.upper()
-# # print(clean_string) # Still lowercase! Must do: clean_string = clean_string.upper()
+# NOTE: Methods don't change the original variable unless reassigned
+# clean_string.upper()
+# print(clean_string) # Still lowercase! Must do: clean_string = clean_string.upper()
 
 
 # # ==========================================
@@ -192,22 +211,26 @@ print(f"Repetition: {'Echo! ' * 3}")
 # print(f"Is 'Python3' all letters?: {'Python3'.isalpha()}") # False because of '3'
 
 
-# # ==========================================
-# # 9. STRINGS <--> LISTS
-# # ==========================================
-# print("\n--- 9. Strings to Lists & Lists to Strings ---")
-# csv_data = "apple,banana,cherry"
+# ==========================================
+# 9. STRINGS <--> LISTS
+# ==========================================
+print("\n--- 9. Strings to Lists & Lists to Strings ---")
+csv_data = "apple,banana,cherry"
 
-# # .split() divides a string based on a delimiter into a list
-# fruit_list = csv_data.split(",")
-# print(f"Split by comma: {fruit_list}")
+# .split() divides a string based on a delimiter into a list
+fruit_list = csv_data.split(",")
+print(f"Split by comma: {fruit_list}")
+
+
 
 # # list() casts a string into a list of individual characters
-# print(f"Characters list: {list('apple')}")
+print(f"Characters list: {list('apple')}")
 
 # # .join() combines a list of strings using a string as the "glue"
-# sentence_words = ["Python", "is", "great"]
-# print(f"Joined with spaces: {' '.join(sentence_words)}")
+sentence_words = ["Python", "is", "great"]
+print(f"Joined with spaces: {' '.join(sentence_words)}")
+print(f"Joined with dashes: {'-----'.join(sentence_words)}")
+
 
 # # FAILS: .join() expects ONLY strings in the list
 # # mixed_list = ["Number", 1]
