@@ -96,18 +96,18 @@ Sometime's that's what people want.
 # ==========================================
 # print("\n--- 3. Indexing & Immutability ---")
 # word = "Rutgers"
-# # R  u  t  g  e  r  s
-# # 0  1  2  3  4  5  6
-# #-7 -6 -5 -4 -3 -2 -1
+# R  u  t  g  e  r  s
+# 0  1  2  3  4  5  6
+#-7 -6 -5 -4 -3 -2 -1
 
 # print(f"First letter: {word[0]}")
 # print(f"Last letter (negative indexing): {word[-1]}")
 
-# # # some examples without the f string
-# # # THE len() FUNCTION
+# # some examples without the f string
+# # THE len() FUNCTION
 # print('the length of a string can be found with the len function, e.g. ' + str(len(word)))
 
-# # # why the negative indexing is useful (it's annoying to work with the end otherwise)
+# # why the negative indexing is useful (it's annoying to work with the end otherwise)
 # print("Last Letter (positive indexing): " + word[len(word)-1])
 
 # FAILS: Accessing an index that doesn't exist
@@ -127,12 +127,18 @@ Sometime's that's what people want.
 # print("\n--- 4. Slicing ---")
 # alphabet = "abcdefg"
 
+# # NOTE The first few lines do the same thing, but removing the defaults by the end
+# print(f"First three letters: {alphabet[0:3:1]}")  # include 0, and everything up to, but NOT including index 3
 # print(f"First three letters: {alphabet[0:3]}")  # include 0, and everything up to, but NOT including index 3
+# print(f"First three letters: {alphabet[:3]}")  # include 0, and everything up to, but NOT including index 3
+# print(f"Starting from index 3 and all the way to the end: {alphabet[3:len(alphabet)]}") # len(alphabet) is the default (and no -1 necessary b/c stop is exclusive)
 # print(f"Starting from index 3 and all the way to the end: {alphabet[3:]}") # len(alphabet) is the default, you can omit it
 # print(f"Every second letter (step): {alphabet[::2]}")
 # # NOTE: below is the same as above (which is the usual way to write it), but making things explicit
-# print(f"Every second letter (step): {alphabet[0:len(alphabet):2]}")
+# print(f"Every second letter (step): {alphabet[0:len(alphabet):2]}") # same as 136
+# print(f"Every second letter (step): {alphabet[:len(alphabet):2]}")# same as 136
 # print(f"Reversed string: {alphabet[::-1]}")     # Classic interview trick
+
 
 
 # # ==========================================
@@ -142,7 +148,7 @@ Sometime's that's what people want.
 # str1 = "Business"
 # str2 = "Analytics"
 
-# # Concatenation (+) and Repetition (*)
+# # # Concatenation (+) and Repetition (*)
 # print(f"Concatenated: {str1 + ' ' + str2}")
 # print(f"Repetition: {'Echo! ' * 3}") # concatenate the string to itself 3 times
 
@@ -151,9 +157,9 @@ Sometime's that's what people want.
 # print(f"Is 'Bus' in str1?: {'Bus' in str1}")
 # print(f"Is 'Math' not in str2?: {'Math' not in str2}")
 
-# # FAILS: Subtracting strings or adding to integers
-# # print(str1 - str2)  # TypeError: unsupported operand type(s) for -
-# # print(str1 + 5)     # TypeError: can only concatenate str (not "int") to str
+# FAILS: Subtracting strings or adding to integers
+# print(str1 - str2)  # TypeError: unsupported operand type(s) for -
+# print(str1 + 5)     # TypeError: can only concatenate str (not "int") to str
 
 
 # # ==========================================
@@ -174,13 +180,19 @@ Sometime's that's what people want.
 # print(f"Capitalize: {clean_string.capitalize()}") # Only first letter of string
 
 # NOTE: Methods don't change the original variable unless reassigned
+# dirty_string = "   data analytics   "
+# clean_string = dirty_string.strip()
+
+# print(f"Original: '{dirty_string}'")
+# print(f"Cleaned: '{clean_string}'")
+
 # clean_string.upper()
 # print(clean_string) # Still lowercase! Must do: clean_string = clean_string.upper()
 
 
-# # ==========================================
-# # 7. BUILT-IN METHODS: SEARCH & REPLACE
-# # ==========================================
+# ==========================================
+# 7. BUILT-IN METHODS: SEARCH & REPLACE
+# ==========================================
 # print("\n--- 7. Methods: Search & Replace ---")
 # sentence = "Python is hard, but Python is powerful."
 
@@ -194,8 +206,8 @@ Sometime's that's what people want.
 # print(f"Find 'powerful': {sentence.find('powerful')}")
 # print(f"Find 'Java': {sentence.find('Java')}") # Returns -1, no error
 
-# # FAILS: .index() is like .find(), but it throws an error if missing
-# # print(sentence.index('Java')) # ValueError: substring not found
+# FAILS: .index() is like .find(), but it throws an error if missing
+# print(sentence.index('Java')) # ValueError: substring not found
 
 
 # # ==========================================
@@ -221,12 +233,17 @@ csv_data = "apple,banana,cherry"
 fruit_list = csv_data.split(",")
 print(f"Split by comma: {fruit_list}")
 
+# split() has a default input of ' '
+print('this is a string'.split(' ')) # here I am making the default explicit
+print('this is a string'.split()) # here I am taking the default (implicitly)
 
 
-# # list() casts a string into a list of individual characters
+
+
+# # # list() casts a string into a list of individual characters
 print(f"Characters list: {list('apple')}")
 
-# # .join() combines a list of strings using a string as the "glue"
+# # # .join() combines a list of strings using a string as the "glue"
 sentence_words = ["Python", "is", "great"]
 print(f"Joined with spaces: {' '.join(sentence_words)}")
 print(f"Joined with dashes: {'-----'.join(sentence_words)}")
