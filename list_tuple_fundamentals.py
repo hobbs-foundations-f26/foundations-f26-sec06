@@ -3,6 +3,8 @@
 # ==========================================
 print("--- 0. Lists: Creation & Mutability ---")
 courses = ["Python", "MIS", "Business Analytics"]
+print(f"Original courses list: {courses}")
+
 
 # Lists are mutable: elements can be modified in place
 courses[1] = "Information System Security"
@@ -56,6 +58,7 @@ print(f"Index of score 92: {scores.index(92)}")
 # ==========================================
 print("\n--- 3. List Indexing & Slicing ---")
 data = [10, 20, 30, 40, 50, 60]
+print(f'Be sure to know which [] you\'re looking at {[10, 20, 30, 40, 50, 60][5]}')
 print(f"First element: {data[0]}")
 print(f"Slice index 1 to 4: {data[1:4]}")
 print(f"Reversed list via slicing: {data[::-1]}")
@@ -133,7 +136,7 @@ gradebook = [
     ["Emily", 88, 91],    # Row 1
     ["Victor", 76, 85]    # Row 2
 ]
-
+gradebook = [["Ptolemy", 95, 92], ["Emily", 88, 91], ["Victor", 76, 85] ]
 # Accessing a whole row
 print(f"Emily's full record: {gradebook[1]}")
 
