@@ -185,13 +185,20 @@ print("\n--- 8. Pythonic Iteration (enumerate & zip) ---")
 # enumerate(): Gets both the index and the value at the same time.
 # Much cleaner than doing: for i in range(len(list))
 top_companies = ["Apple", "Microsoft", "Nvidia"]
+# enumerate(top_companies) = [(0,"Apple"), (1, "Microsoft"), (2,"Nvidia")]
 for idx, value in enumerate(top_companies):
     print(f"Rank {idx}: {value}")
 
+# without enumerate this is the same, but it's considered "not pythonic"
+for idx in range(len(top_companies)):
+    print(f"Rank {idx}: {top_companies[idx]}")
+
+
 # zip(): Iterates through multiple lists in parallel, stopping at the shortest one.
-names = ["Ptolemy", "Emily", "Victor"]
+names = ["Ptolemy", "Emily", "Victor","won't be paired"]
 grades = ["A", "A", "B"]
-for name, grade in zip(names, grades):
+# zip(name,grades) = [("Ptolemy","A"), ("Emily", "A"), ("Victor","B")]
+for name, grade in zip(names, grades): 
     print(f"{name} earned an {grade}")
 
 
