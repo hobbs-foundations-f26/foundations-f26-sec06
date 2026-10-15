@@ -3,13 +3,14 @@
 # ==========================================
 print("--- 0. Defining & Calling ---")
 # 'def' creates the function. It doesn't run until explicitly called.
-def greet_student(name):
+def greetStudent(name):
     # Docstrings (triple quotes) explain what the function does
     """Prints a welcome message for a student."""
     print(f"Welcome to Business Programming, {name}!")
 
-greet_student("Emily")
-greet_student("Ptolemy")
+# this is called "calling"/"invoking"/"executing" the function.
+greetStudent("Emily")
+greetStudent("Ptolemy")
 
 
 # ==========================================
@@ -20,7 +21,7 @@ print("\n--- 1. Return Values ---")
 
 def calculate_roi(revenue, cost):
     roi = (revenue - cost) / cost
-    return roi
+    return roi # the word "return" is used to specify a function's output
 
 # Capturing the returned value into a variable
 project_roi = calculate_roi(15000, 10000)
@@ -30,9 +31,23 @@ print(f"Project ROI: {project_roi:.1%}")
 def summarize_grades(scores):
     return min(scores), max(scores), sum(scores)/len(scores)
 
+# you can capture multiple outputs with tuple unpacking
 low, high, avg = summarize_grades([85, 92, 78, 100])
 print(f"Low: {low}, High: {high}, Avg: {avg}")
 
+result = summarize_grades([85, 92, 78, 100])
+print(f"{type(result)}, {result} Low: {result[0]}, High: {result[1]}, Avg: {result[2]}")
+
+# Note, in python functions *always* return something. 
+# By default this is the value None
+def greetStudent(name):
+    # Docstrings (triple quotes) explain what the function does
+    """Prints a welcome message for a student."""
+    print(f"Welcome to Business Programming, {name}!")
+    # return None  # without writing this, the behavior is the same
+
+# this is called "calling"/"invoking"/"executing" the function.
+print(greetStudent("Emily")) # this will print the value None
 
 # ==========================================
 # 2. DEFAULT PARAMETERS
@@ -40,10 +55,11 @@ print(f"Low: {low}, High: {high}, Avg: {avg}")
 print("\n--- 2. Default Parameters ---")
 # You can assign default values to parameters. They must come AFTER non-default parameters.
 
+# here, price is called a positional argument, and discount_rate is called a named argument
 def calculate_discount(price, discount_rate=0.10):
     return price * (1 - discount_rate)
 
-# Uses the default 10% discount
+# # Uses the default 10% discount
 print(f"Standard discount: ${calculate_discount(100):.2f}")
 
 # Overrides the default with a 25% discount
@@ -69,18 +85,22 @@ create_profile(major="Finance", last="Smith", first="Victor")
 
 # FAILS: Positional arguments cannot follow keyword arguments in the function call
 # create_profile(major="Accounting", "John", "Doe") # SyntaxError: positional argument follows keyword argument
+# create_profile("John", "Doe", major="Accounting") # SyntaxError: positional argument follows keyword argument
 
 
 # ==========================================
 # 4. VARIABLE ARGUMENTS (*args, **kwargs)
 # ==========================================
 print("\n--- 4. *args and **kwargs ---")
-# *args catches an unlimited number of positional arguments into a TUPLE.
+# The * character "upgrades" an input (only one!!)
+# to catch an unlimited number of **positional** arguments into a TUPLE.
 def calculate_average(*args):
     if not args:
         return 0
     return sum(args) / len(args)
 
+print(f"Average of 0 grades: {calculate_average()}")
+print(f"Average of 2 grades: {calculate_average(80,90)}")
 print(f"Average of 5 grades: {calculate_average(90, 85, 100, 75, 88)}")
 
 # **kwargs catches an unlimited number of keyword arguments into a DICTIONARY.

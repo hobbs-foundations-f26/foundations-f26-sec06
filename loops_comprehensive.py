@@ -189,7 +189,7 @@ top_companies = ["Apple", "Microsoft", "Nvidia"]
 for idx, value in enumerate(top_companies):
     print(f"Rank {idx}: {value}")
 
-# without enumerate this is the same, but it's considered "not pythonic"
+# without enumerate this behaves the same, but it's considered "not pythonic"
 for idx in range(len(top_companies)):
     print(f"Rank {idx}: {top_companies[idx]}")
 
