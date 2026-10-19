@@ -7,12 +7,21 @@ print("--- 0. List Comprehensions ---")
 
 raw_prices = [10, 22, 35, 40, 55]
 
+# without a comprehension, to create an populate a list takes a few lines
+taxed_prices = []
+for price in raw_prices:
+    taxed_prices.append(price * 1.0)
+
 # Mapping: Apply an operation to every item (e.g., add 7% sales tax)
 taxed_prices = [price * 1.07 for price in raw_prices]
 print(f"Taxed prices: {taxed_prices}")
 
+for tax in taxed_prices:
+    print(f'{tax=:.2f}' for tax in taxed_prices)
+
 # Filtering: Keep only items that meet a condition (e.g., even numbers)
 # Syntax: [expression for item in iterable if condition]
+raw_prices = [10, 22, 35, 40, 55]
 even_prices = [price for price in raw_prices if price % 2 == 0]
 print(f"Even prices only: {even_prices}")
 
@@ -50,8 +59,9 @@ print("\n--- 2. Set Comprehensions ---")
 messy_data = [10, 20, 10, 30, 20, 40, 50, 40]
 
 # Automatically filters out duplicates while applying logic
-unique_tens = {num // 10 for num in messy_data}
-print(f"Unique tens digits: {unique_tens}")
+list_tens = [num // 10 for num in messy_data] # list []
+unique_tens = {num // 10 for num in messy_data} # set {}
+print(f"{list_tens=} {unique_tens=}")
 
 # Extracting unique characters (ignoring spaces)
 quote = "data analytics"
@@ -104,7 +114,7 @@ print(f"Flattened matrix: {flat_list}")
 # ==========================================
 # 5. NESTED COMPREHENSIONS (Matrix Transposition)
 # ==========================================
-print("\n--- 5. Matrix Transposition (Advanced) ---")
+print("\n--- 5. Matrix Transposition ---")
 # Sometimes the comprehension itself contains another comprehension.
 
 matrix = [
@@ -127,7 +137,7 @@ print("--- 0. The Memory Problem ---")
 # If you create a list of 10 million items, your computer might crash.
 
 import sys
-standard_list = [x ** 2 for x in range(10000)]
+standard_list = [x ** 2 for x in range(1000000)]
 print(f"List memory size: {sys.getsizeof(standard_list)} bytes")
 
 
@@ -138,27 +148,29 @@ print("\n--- 1. Generator Expressions ---")
 # Replace brackets [] with parentheses (). 
 # This creates a generator object that yields one item at a time, saving massive amounts of RAM.
 
-gen_expr = (x ** 2 for x in range(10000))
+gen_expr = (x ** 2 for x in range(1000000))
 print(f"Generator type: {type(gen_expr)}")
 print(f"Generator memory size: {sys.getsizeof(gen_expr)} bytes") # Radically smaller!
 
-# You can iterate through it just like a list
+# # You can iterate through it just like a list
 print("First three values from generator:")
 for _ in range(3):
     print(next(gen_expr))
-    
-# NOTE: Memory Warning
-# List comprehensions load the entire list into RAM at once. 
-# If processing 10 million rows, use a Generator Expression instead!
-# Generator Expression (uses parentheses instead of brackets):
-# memory_safe = (x * 2 for x in massive_dataset)
 
-# ==========================================
-# 7. COMMON ERRORS & PITFALLS
-# ==========================================
-print("\n--- 6. Common Errors ---")
+print(next(gen_expr)) # always continues where it left off
 
-# FAILS: Trying to put an unhashable type (like a list) into a set comprehension
-# nested_lists = [[1, 2], [3, 4], [1, 2]]
-# unique_lists = {lst for lst in nested_lists} # TypeError: unhashable type: 'list'
-# FIX: Convert the inner lists to tuples first: {tuple(lst) for lst in nested_lists}
+# # NOTE: Memory Warning
+# # List comprehensions load the entire list into RAM at once. 
+# # If processing 10 million rows, use a Generator Expression instead!
+# # Generator Expression (uses parentheses instead of brackets):
+# # memory_safe = (x * 2 for x in massive_dataset)
+
+# # ==========================================
+# # 7. COMMON ERRORS & PITFALLS
+# # ==========================================
+# print("\n--- 6. Common Errors ---")
+
+# # FAILS: Trying to put an unhashable type (like a list) into a set comprehension
+# # nested_lists = [[1, 2], [3, 4], [1, 2]]
+# # unique_lists = {lst for lst in nested_lists} # TypeError: unhashable type: 'list'
+# # FIX: Convert the inner lists to tuples first: {tuple(lst) for lst in nested_lists}
