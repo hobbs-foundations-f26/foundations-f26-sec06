@@ -22,8 +22,9 @@ print("\n--- 1. Writing to Files ('w' mode) ---")
 
 # Writing a single string
 with open("roster.txt", "w") as f:
-    f.write("Student Roster:\n")
-    f.write("1. Ptolemy\n")
+    f.write("Line one:\n")
+    f.write("Line two\n")
+    # f.read() # this would FAIL b/c no read permission
 print("Created and wrote to roster.txt")
 
 # Writing multiple lines from a list using .writelines()
@@ -65,6 +66,11 @@ with open("roster.txt", "r") as f:
     lines_list = f.readlines()
     print(f"List format: {lines_list}")
 
+    # make ['2. Emily', '3. Victor', '4. Nathaniel', '5. Sarah']
+    clean_lines_list = [line.strip() for line in lines_list]
+    print(f"List format: {clean_lines_list}")
+
+
 
 # ==========================================
 # 4. MEMORY-EFFICIENT READING (For Massive Files)
@@ -83,19 +89,26 @@ with open("roster.txt", "r") as f:
 # ==========================================
 # 5. COMMON ERRORS
 # ==========================================
-print("\n--- 5. Common Errors ---")
+# print("\n--- 5. Common Errors ---")
+
+# # FAILS: Trying to write to a file opened in read mode
+# with open("roster.txt", "r") as f:
+#     f.write("6. John\n") # io.UnsupportedOperation: not writable
 
 # FAILS: Trying to read a file that doesn't exist
 # with open("missing_grades.csv", "r") as f:
 #     data = f.read()  # FileNotFoundError: [Errno 2] No such file or directory
-
-# FAILS: Trying to write to a file opened in read mode
-# with open("roster.txt", "r") as f:
-#     f.write("6. John\n") # io.UnsupportedOperation: not writable
-
+import io
 # PROPER EXCEPTION HANDLING:
-try:
-    with open("missing_grades.csv", "r") as f:
-        data = f.read()
-except FileNotFoundError:
-    print("Caught FileNotFoundError: Please verify the file path!")
+# try:
+#     with open("roster.txt", "r") as f:
+#         f.write("6. John\n") # io.UnsupportedOperation: not writable
+
+#     # with open("missing_grades.csv", "r") as f: # FileNotFoundError
+#     #     data = f.read()
+# except FileNotFoundError:
+#     print("Caught FileNotFoundError: Please verify the file path!")
+# except io.UnsupportedOperation:
+#     print('Check your permissions!')
+# except: # this catches all other kinds of errors
+#     print('something went wrong, but the file was found and permissions were okay')
