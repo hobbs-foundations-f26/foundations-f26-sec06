@@ -18,11 +18,11 @@ print(f"Script name: {sys.argv[0]}")
 
 # FAILS: If the user doesn't provide enough arguments, accessing index 1 crashes.
 # Try running just `python command_line_input_comprehensive.py` in the terminal to see this fail.
-input_file = sys.argv[1] # IndexError: list index out of range
+# input_file = sys.argv[1] # IndexError: list index out of range
 
 # FAILS: sys.argv ALWAYS imports everything as a string. You must manually cast.
-# limit = sys.argv[2] 
-# print(limit + 5) # TypeError: can only concatenate str (not "int") to str
+# rows = sys.argv[3] 
+# print(rows-10) # TypeError: can only concatenate str (not "int") to str
 
 
 # ==========================================
